@@ -6,15 +6,9 @@ For larger CSV files, it's highly recommended to have a NVIDIA GPU hardware unle
 
 Prompt examples are taken from [fka/awesome-chatgpt-prompts](https://huggingface.co/datasets/fka/awesome-chatgpt-prompts)
 
-## Google Colab Usage
+## Usage Requirements
 
-Clone the repository:
-
-```bash
-git clone https://github.com/simuark/lmppl-cli-csv-wrapper
-```
-
-Modify the _config.ini_ file according to your needs:
+Please modify the _config.ini_ file according to your needs:
 
 ```yaml
 [Config]
