@@ -1,8 +1,6 @@
 # LMPPL CLI CSV Wrapper
 
-A tiny CLI wrapper around [lmppl](https://github.com/asahi417/lmppl) for Pre-Trained Language Models Perplexity Calculation for CSV files. Please edit your config.ini file according to your needs.
-
-For larger CSV files, it's highly recommended to have a NVIDIA GPU hardware unless processing going to be significantly slower due to the increased computational requirements. 
+A tiny CLI wrapper around [lmppl](https://github.com/asahi417/lmppl) for Pre-Trained Language Models Perplexity Calculation for CSV files. Please edit your config.ini file according to your needs. For larger CSV files, it's highly recommended to have a NVIDIA GPU hardware unless processing going to be significantly slower due to the increased computational requirements. 
 
 :warning: Calculated perplexity scores will be append to the CSV file you uploaded as a new header.
 
