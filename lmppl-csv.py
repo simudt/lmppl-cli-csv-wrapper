@@ -9,15 +9,7 @@ from configparser import ConfigParser
 
 def load_text_from_csv(csv_file: str, csv_sentence_header: str, delimiter: str = ",") -> List[str]:
     """
-    Load text from a CSV file.
-
-    Args:
-        csv_file (str): Path to the CSV file.
-        csv_sentence_header (str): Name of the column containing the sentences in the CSV file.
-        delimiter (str, optional): Delimiter used in the CSV file. Defaults to ",".
-
-    Returns:
-        list: A list of sentences loaded from the CSV file.
+    Load text from a CSV file
     """
     text: List[str] = []
     with open(csv_file, "r", encoding="utf-8") as file:
@@ -35,17 +27,7 @@ def load_text_from_csv(csv_file: str, csv_sentence_header: str, delimiter: str =
 
 def initialize_language_model(model_name: str) -> lmppl.LM:
     """
-    Initialize the language model.
-
-    Args:
-        model_name (str): Name of the language model.
-
-    Returns:
-        lmppl.LM: An instance of the language model.
-
-    Raises:
-        ImportError: If the LM class import fails.
-        Exception: If there is an error initializing the language model.
+    Initialize the language model
     """
     try:
         scorer = lmppl.LM(model_name)
@@ -58,15 +40,7 @@ def initialize_language_model(model_name: str) -> lmppl.LM:
 
 def calculate_perplexity(scorer: lmppl.LM, text: List[str], batch_size: int) -> List[float]:
     """
-    Calculate perplexity for a list of sentences.
-
-    Args:
-        scorer (lmppl.LM): The language model scorer.
-        text (list): A list of sentences.
-        batch_size (int): Batch size for calculating perplexity.
-
-    Returns:
-        list: A list of perplexities for the input sentences.
+    Calculate perplexity for a list of sentences
     """
     ppl: List[float] = []
     for i in range(0, len(text), batch_size):
@@ -78,12 +52,7 @@ def calculate_perplexity(scorer: lmppl.LM, text: List[str], batch_size: int) -> 
 
 def append_perplexity_to_csv(csv_file: str, text: List[str], perplexities: List[float]) -> None:
     """
-    Append perplexities to a CSV file.
-
-    Args:
-        csv_file (str): Path to the CSV file.
-        text (list): A list of sentences.
-        perplexities (list): A list of perplexities corresponding to the sentences.
+    Append perplexities to a CSV file
     """
     with open(csv_file, "r", encoding="utf-8") as file:
         reader = csv.DictReader(file)
@@ -105,7 +74,7 @@ def calculate_average_perplexity(perplexities: List[float]) -> float:
     Calculate the average perplexity.
 
     Args:
-        perplexities (list): A list of perplexities.
+        perplexities (list): A list of perplexities
 
     Returns:
         float: The average perplexity.
@@ -115,10 +84,7 @@ def calculate_average_perplexity(perplexities: List[float]) -> float:
 
 def main(config_file: str) -> None:
     """
-    Main entry point of the script.
-
-    Args:
-        config_file (str): Path to the config INI file.
+    Main entry point of the lmppl-csv.py
     """
     config = ConfigParser()
     config.read(config_file)
