@@ -1,0 +1,2 @@
+sacremoses-0.0.53
+lmppl==0.3.1
