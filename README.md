@@ -18,8 +18,8 @@ Modify the _config.ini_ file according to your needs:
 
 ```yaml
 [Config]
-csv_file = /content/data/prompts.csv
-csv_sentence_header = sentence
+csv_file = /content/lmppl-cli-csv-wrapper/data/prompts.csv
+csv_sentence_header = prompt
 model_name = gpt2
 batch_size = 8
 delimiter = ,
