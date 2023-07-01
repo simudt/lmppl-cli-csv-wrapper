@@ -7,7 +7,9 @@ from typing import List
 from configparser import ConfigParser
 
 
-def load_text_from_csv(csv_file: str, csv_sentence_header: str, delimiter: str = ",") -> List[str]:
+def load_text_from_csv(
+    csv_file: str, csv_sentence_header: str, delimiter: str = ","
+) -> List[str]:
     """
     Load text from a CSV file
     """
@@ -33,12 +35,16 @@ def initialize_language_model(model_name: str) -> lmppl.LM:
         scorer = lmppl.LM(model_name)
         return scorer
     except ImportError:
-        raise ImportError("Failed to import the LM class. Make sure 'lmppl' is correctly installed.")
+        raise ImportError(
+            "Failed to import the LM class. Make sure 'lmppl' is correctly installed."
+        )
     except Exception as e:
         raise Exception(f"Failed to initialize the language model: {str(e)}")
 
 
-def calculate_perplexity(scorer: lmppl.LM, text: List[str], batch_size: int) -> List[float]:
+def calculate_perplexity(
+    scorer: lmppl.LM, text: List[str], batch_size: int
+) -> List[float]:
     """
     Calculate perplexity for a list of sentences
     """
@@ -50,7 +56,9 @@ def calculate_perplexity(scorer: lmppl.LM, text: List[str], batch_size: int) -> 
     return ppl
 
 
-def append_perplexity_to_csv(csv_file: str, text: List[str], perplexities: List[float]) -> None:
+def append_perplexity_to_csv(
+    csv_file: str, text: List[str], perplexities: List[float]
+) -> None:
     """
     Append perplexities to a CSV file
     """
@@ -63,10 +71,14 @@ def append_perplexity_to_csv(csv_file: str, text: List[str], perplexities: List[
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         print("\nStarting to calculate perplexity by row...")
-        for index, (row, sentence, perplexity) in enumerate(zip(rows, text, perplexities)):
+        for index, (row, sentence, perplexity) in enumerate(
+            zip(rows, text, perplexities)
+        ):
             row["Perplexity"] = perplexity
             writer.writerow(row)
-            print(f"\nIndex ID: {index}\nSentence: {sentence}\nPerplexity: {perplexity}")
+            print(
+                f"\nIndex ID: {index}\nSentence: {sentence}\nPerplexity: {perplexity}"
+            )
 
 
 def calculate_average_perplexity(perplexities: List[float]) -> float:
@@ -95,7 +107,9 @@ def main(config_file: str) -> None:
     batch_size = config.getint("Config", "batch_size")
     delimiter = config.get("Config", "delimiter", fallback=",")
 
-    text = load_text_from_csv(csv_file, csv_sentence_header=csv_header, delimiter=delimiter)
+    text = load_text_from_csv(
+        csv_file, csv_sentence_header=csv_header, delimiter=delimiter
+    )
 
     scorer = initialize_language_model(model_name)
     perplexities = calculate_perplexity(scorer, text, batch_size)
@@ -107,7 +121,9 @@ def main(config_file: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("config_file", help="Path to the config INI file")
-    parser.add_argument("--delimiter", help="Delimiter used in the CSV file", default=",")
+    parser.add_argument(
+        "--delimiter", help="Delimiter used in the CSV file", default=","
+    )
     args = parser.parse_args()
 
     main(args.config_file)
