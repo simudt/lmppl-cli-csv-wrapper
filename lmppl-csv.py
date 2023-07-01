@@ -1,7 +1,6 @@
 import csv
 import lmppl
 import argparse
-import urllib.request
 
 from typing import List
 from configparser import ConfigParser
